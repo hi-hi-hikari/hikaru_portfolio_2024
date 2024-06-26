@@ -20,7 +20,7 @@
   <div class="wrapper">
     <!-- header -->
     <!-- nav -->
-    <header>
+    <header id="header">
       <div class="header_inner">
         <div class="header_logo"><a href="./index.html"><img src="./img_pc/header_logo.png" alt="logo"></a></div>
         <nav class="header_nav">
@@ -34,6 +34,11 @@
       </div>
       <!-- ハンバーガーメニュー・sp用 -->
       <div id="navarea">
+        <div class="header_logo-sp">
+          <a href="./index.html"
+            ><img src="./img_pc/header_logo.png" alt="logo"
+          /></a>
+        </div>
         <nav class="nav_sp">
           <div class="inner">
             <ul>
@@ -55,19 +60,27 @@
     <!-- about_me -->
     <section id="profile_block">
       <div class="profile_images">
-        <div class="profile_image_myphoto"><img src="./img_pc/about_myphoto2.png" alt="自己紹介写真2"></div>
-          <div class="loop_text"><img src="./img_pc/aboutme.png" alt="aboutme">
-          </div>
+        <div class="profile_image_myphoto">
+          <img src="./img_pc/about_myphoto2.png" alt="自己紹介写真2">
+        </div>
+        <div class="loopSlide">
+          <img src="./img_pc/aboutme.png"><img src="./img_pc/aboutme.png">
+        </div>
       </div>
-      <div class="profile_container">
-        <h1 class="name">HIKARU</h1>
-        <p class="profile_text">1990年生まれ、神奈川県在住。猫好きな30代です。<br>
-          現職である行政機関で広報誌作成を5年間経験。毎月の広報誌の作成では、企画・取材・撮影・作成とゼロから広報誌としてカタチになるまでの一連の業務を担当していました。<br>
-          お堅く難しい情報や地域の魅力…様々な情報を老若男女問わず、多くの人に伝えることが求められる現場で、伝わる方法を試行錯誤した結果、同僚や地域の人のお力添えもあり県の広報コンクールでは毎年受賞、全国のコンクールでも受賞することができました。<br>
-          そんなデザインのチカラに魅せられて、気が付けば本棚はデザインの参考図書にあふれていました。その後、2024年から本格的にデザインを学びたく、デザスタの受講を開始。<br>
-          発信者の思いを伝えるのはもちろん、それを受け取る人の知りたいモノ・コトのニーズにも応えられるデザインをめざしています。
-        </p>
-        <div class="photo"><img src="./img_pc/about_cat1.png" alt="愛猫の写真1"></div>
+      <div class="scroll_up">
+        <div class="profile_container">
+          <h1 class="name">HIKARU</h1>
+          <p class="profile_text">1990年生まれ、神奈川県在住。猫好きな30代です。<br>
+            現職である行政機関で広報誌作成を5年間経験。毎月の広報誌の作成では、企画・取材・撮影・作成とゼロから広報誌としてカタチになるまでの一連の業務を担当していました。<br>
+            お堅く難しい情報や地域の魅力…様々な情報を老若男女問わず、多くの人に伝えることが求められる現場で、伝わる方法を試行錯誤した結果、同僚や地域の人のお力添えもあり県の広報コンクールでは毎年受賞、全国のコンクールでも受賞することができました。<br>
+            そんなデザインのチカラに魅せられて、気が付けば本棚はデザインの参考図書にあふれていました。その後、2024年から本格的にデザインを学びたく、デザスタの受講を開始。<br>
+            発信者の思いを伝えるのはもちろん、それを受け取る人の知りたいモノ・コトのニーズにも応えられるデザインをめざしています。
+          </p>
+          <div class="photo">
+            <img class="image" src="./img_pc/about_cat1.png" alt="愛猫の写真1">
+            <img class="image" src="./img_pc/about_cat2.png" alt="愛猫の写真2">
+          </div>
+        </div>
       </div>
     </section>
     <!-- SKILL -->
@@ -77,17 +90,17 @@
         <p>できること</p>
       </div>
       <ul>
-        <li>
+        <li class="fadein">
           <div class="skill_inner"><img src="./img_pc/skill_ai.png" alt="illustratorアイコン"></div>
           <p>Illustrator歴：4か月</p>
           <p>簡単なロゴやアイコンの作成、文字の装飾が可能です。</p>
         </li>
-        <li>
+        <li class="fadein">
           <div class="skill_inner"><img src="./img_pc/skill_ps.png" alt="Photoshopアイコン"></div>
           <p>Photoshop歴：4か月</p>
           <p>写真のレタッチや加工、切り抜きなどの作業が可能です。</p>
         </li>
-        <li>
+        <li class="fadein">
           <div class="skill_inner"><img src="./img_pc/skill_coding.png" alt="codingアイコン"></div>
           <p>HTML／CSS歴：4か月</p>
           <p>レスポンシブをはじめ、jQueryの記述も可能です。</p>
@@ -149,6 +162,10 @@
         <small>&copy; HIKARU</small>
       </div>
     </footer>
+    <!-- TOPへ戻るボタン -->
+    <p class="toTOP">
+      <a href="#header"><img src="./img_pc/to_top_button.png"></a>
+    </p>
   </div>
   <!-- javascript読み込み -->
   <script>
@@ -170,6 +187,39 @@
       $nav.removeClass( open );
     });
   } )(jQuery);
+  // ABOUTを下からふわっと表示
+$(window).scroll(function () {
+  var scrollAnimationElm = document.querySelectorAll('.scroll_up');
+  var scrollAnimationFunc = function () {
+    for (var i = 0; i < scrollAnimationElm.length; i++) {
+      var triggerMargin = 150;
+      if (window.innerHeight > scrollAnimationElm[i].getBoundingClientRect().top + triggerMargin) {
+        scrollAnimationElm[i].classList.add('on');
+      }
+    }
+  }
+  window.addEventListener('load', scrollAnimationFunc);
+  window.addEventListener('scroll', scrollAnimationFunc);
+});
+// skillを順番に表示
+$(function(){
+    $(window).scroll(function (){
+        $('.fadein').each(function(){
+            var position = $(this).offset().top;
+            var scroll = $(window).scrollTop();
+            var windowHeight = $(window).height();
+            if (scroll > position - windowHeight + 200){
+                $(function(){
+                    $('.fadein').each(function(i){
+                        $(this).delay(i * 200).queue(function(){
+                            $(this).addClass('active');
+                        });
+                    });
+                });
+            }
+        });
+    });
+});
   </script>
 </body>
 </html>

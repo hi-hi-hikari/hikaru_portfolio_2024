@@ -18,11 +18,13 @@ small,
   font-style: normal;
 }
 /* ↓欧文 */
+#splash-logo,
 .main_visual h1,
 .subtitle h2,
 .header_nav ul li,
 .nav_sp .inner ul li,
-.footer_innner ul li {
+.footer_innner ul li,
+.loop_text_inner {
   font-family: "linotype-didot-headline", serif;
   font-weight: 400;
   font-style: normal;
@@ -61,7 +63,7 @@ body :lang(en) {
   font-size: 20px;
 }
 /* spの時消す */
-.navarea, .nav_sp {
+.navarea, .nav_sp, .header_logo-sp {
   display: none;
 }
 /* subtitle共通 */
@@ -165,6 +167,12 @@ body :lang(en) {
   text-align: center;
   margin-top: 100px;
 }
+/* TOPへ戻るボタン */
+.toTOP{
+  position: fixed;
+  bottom: 100px;
+  right: 5%;
+}
 
 /* ハンバーガーメニュー */
 @media screen and (max-width:900px) {
@@ -177,6 +185,15 @@ body :lang(en) {
 /*============
 nav
 =============*/
+.header_logo-sp{
+  display: block;
+  width: 30px;
+  height: auto;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  position: fixed;
+}
 .nav_sp {
   position: fixed;
   top: 0;
@@ -310,5 +327,9 @@ nav
   }
   .works_inner p {
     font-size: 12px;
+  }
+  .toTOP {
+    width: 50px;
+    right: 5%;
   }
 }

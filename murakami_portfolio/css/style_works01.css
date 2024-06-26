@@ -44,6 +44,13 @@
   max-width: 73.206%;
   margin: 0 auto;
 }
+.img_ss_f {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  max-width: 73.206%;
+  margin: 0 auto;
+}
 @media screen and (max-width:900px) {
   .works_item {
     padding-top: 100px;
@@ -76,5 +83,10 @@
   }
   .works_inner {
     padding-bottom: 55px;
+  }
+}
+@media screen and (max-width:767px) {
+  .img_ss_f {
+    flex-direction: column;
   }
 }

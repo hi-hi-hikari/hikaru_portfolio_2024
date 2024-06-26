@@ -9,6 +9,11 @@
   right: 5%;
   width: 100%;
   max-width: 12.811%;
+  animation:15s linear infinite rotation1;
+}
+@keyframes rotation1{
+  0%{ transform:rotate(0);}
+  100%{ transform:rotate(360deg); }
 }
 /* SCROLL */
 .scrolldown1 {
@@ -19,15 +24,33 @@
   margin-top: 50px;
 }
 .scrolldown1::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -50%;
+  bottom: -70%;
   width: 1px;
   height: 50px;
   margin: auto;
   background-color: #45465a;
+  animation: pathmove 1.8s ease-in-out infinite;
+  opacity:0;
+}
+@keyframes pathmove{
+  0%{
+    height:0;
+    top:0;
+    opacity: 0;
+  }
+  30%{
+    height:30px;
+    opacity: 1;
+  }
+  100%{
+    height:0;
+    top:50px;
+    opacity: 0;
+  }
 }
 /* ナビゲーションメニュー */
 .header_inner{
@@ -52,6 +75,15 @@
   line-height: 2.5;
   font-size: 16px;
 }
+.scroll_up {
+  transition: 0.8s ease-in-out;
+  transform: translateY(30px);
+  opacity: 0;
+}
+.scroll_up.on {
+  transform: translateY(0);
+  opacity: 1.0;
+}
 /* works */
 #works {
   max-width: 1150px;
@@ -68,6 +100,14 @@
 }
 #works h3 {
   margin-top: 10px;
+}
+.fadein {
+  opacity : 0;
+  transition : all 2s;
+}
+  
+.fadein.active{
+  opacity : 1;
 }
 /* お問い合わせ */
 hr.style1{
@@ -123,12 +163,12 @@ textarea.c-form__input {
   color: #45465a;
   background-color: transparent;
 }
-/* TOPへ戻るボタン */
+/* TOPへ戻るボタン
 .toTOP{
   position: fixed;
   bottom: 100px;
   right: 5%;
-}
+} */
 /* ヘッダー＆メインビジュアル */
 @media screen and (max-width:767px) {
 
@@ -177,9 +217,5 @@ textarea.c-form__input {
   }
   #contact form {
     width: 80%;
-  }
-  .toTOP {
-    width: 50px;
-    right: 5%;
   }
 }
