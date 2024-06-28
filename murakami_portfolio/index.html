@@ -79,20 +79,34 @@
           <h2>ABOUT</h2>
           <p>私のこと</p>
         </div>
-        <div class="scroll_up">
-          <div class="about">
-            <div class="about_image"><img src="./img_pc/about_myphoto1.png" alt="自己紹介写真1"></div>
-            <div>
-              <h3>HIKARU</h3>
-              <p>1990年生まれ、神奈川県在住。猫好きの30代です。<br>
-              大学卒業後、行政機関に勤務。Webデザインを学ぶきっかけとなった広報誌作成を5年間経験しました。<br>
-              情報を整理して分かりやすく表現することが楽しく、気が付けば本棚がデザインの参考図書一色に…。<br>
-              本格的にデザインの勉強をしたく、デザスタの受講を開始。<br>
-              日々、スキルアップに励み中です。
-              </p>
-            </div>
+        <div class="about">
+          <div class="about_image effect-fade"><img src="./img_pc/about_myphoto1.png" alt="自己紹介写真1"></div>
+          <div>
+            <h3 class="effect-fade">HIKARU</h3>
+            <p class="effect-fade">1990年生まれ、神奈川県在住。猫好きの30代です。<br>
+            大学卒業後、行政機関に勤務。Webデザインを学ぶきっかけとなった広報誌作成を5年間経験しました。<br>
+            情報を整理して分かりやすく表現することが楽しく、気が付けば本棚がデザインの参考図書一色に…。<br>
+            本格的にデザインの勉強をしたく、デザスタの受講を開始。<br>
+            日々、スキルアップに励み中です。
+            </p>
           </div>
         </div>
+        <div class="about_image_cat appButton"><a onclick="sound()">
+          <img src="./img_pc/about_cat1.png"></a>
+        </div>
+        <audio id="sound" preload="auto">
+          <source src="./music/cat.mp3" type="audio/mp3">
+          <source src="./music/cat.ogg" type="audio/ogg">
+        </audio>
+        <!-- <p class="cat">
+          <audio id="overSound" preload="auto">
+            <source src="./music/cat.mp3" type="audio/mp3">
+            <source src="./music/cat.ogg" type="audio/ogg">
+          </audio>
+          <div class="about_image_cat appButton">
+            <img src="./img_pc/about_cat1.png">
+          </div>
+        </p> -->
         <!-- ボタン -->
         <div class="button">
           <a href="./about.html" class="btn"><span>VIEW MORE</span><span class="dli-arrow-right"></span></a>
@@ -219,6 +233,7 @@
       </p>
     </div>
     <!-- javascript読み込み -->
+    <!-- ハンバーガーメニュー -->
     <script>
       (function($) {
       var $nav   = $('#navarea');
@@ -240,37 +255,47 @@
     } )(jQuery);
     
     $(window).on('load',function(){
-$("#splash-logo").delay(1200).fadeOut('slow');//ロゴを1.2秒でフェードアウトする記述
-
-//=====ここからローディングエリア（splashエリア）を1.5秒でフェードアウトした後に動かしたいJSをまとめる
-$("#splash").delay(1500).fadeOut('slow',function(){//ローディングエリア（splashエリア）を1.5秒でフェードアウトする記述
-
-$('body').addClass('appear');//フェードアウト後bodyにappearクラス付与
-
+$("#splash-logo").delay(1200).fadeOut('slow');
+$("#splash").delay(1500).fadeOut('slow',function(){
+$('body').addClass('appear');
 });
-//=====ここまでローディングエリア（splashエリア）を1.5秒でフェードアウトした後に動かしたいJSをまとめる
-
-//=====ここから背景が伸びた後に動かしたいJSをまとめたい場合は
 $('.splashbg1').on('animationend', function() { 
-//この中に動かしたいJSを記載
 });
-//=====ここまで背景が伸びた後に動かしたいJSをまとめる
-
 });
-// ABOUTを下からふわっと表示
-$(window).scroll(function () {
-  var scrollAnimationElm = document.querySelectorAll('.scroll_up');
-  var scrollAnimationFunc = function () {
-    for (var i = 0; i < scrollAnimationElm.length; i++) {
-      var triggerMargin = 150;
-      if (window.innerHeight > scrollAnimationElm[i].getBoundingClientRect().top + triggerMargin) {
-        scrollAnimationElm[i].classList.add('on');
+// aboutを順番に表示
+$(function () {
+  $(window).scroll(function () {
+    $(".effect-fade").each(function () {
+      var elemPos = $(this).offset().top; /* 要素の位置を取得 */
+      var scroll = $(window).scrollTop(); /* スクロール位置を取得 */
+      var windowHeight = $(window).height(); /* 画面幅を取得（画面の下側に入ったときに動作させるため） */
+      if (scroll > elemPos - windowHeight) {
+        /* 要素位置までスクロール出来たときに動作する */
+        $(this).addClass("effect-scroll");
       }
-    }
-  }
-  window.addEventListener('load', scrollAnimationFunc);
-  window.addEventListener('scroll', scrollAnimationFunc);
+    });
+  });
+  jQuery(window).scroll();
 });
+// 音を鳴らす
+(function (window, $) {
+  'use strict';
+  $.fn.useSound = function (_event, _id) {
+    var se = $(_id);
+    this.on(_event, function(){
+      se[0].currentTime = 0;
+      se[0].play();
+    });
+    return this;
+  };
+})(this, this.jQuery);
+$('.about_image_cat a').useSound('mousedown touchstart', '#sound');
+// $(function(){
+//   $('.appButton').mouseover(function(){
+//   document.getElementById("overSound").currentTime = 0;
+//   document.getElementById("overSound").play();
+//   });
+// });
 // WORKSを順番に表示
 $(function(){
     $(window).scroll(function (){
@@ -290,6 +315,38 @@ $(function(){
         });
     });
 });
+// トップへボタン
+$(function() {
+  // 変数にクラスを入れる
+  var btn = $('.toTOP');
+  
+  //スクロールしてページトップから100に達したらボタンを表示
+  $(window).on('load scroll', function(){
+    if($(this).scrollTop() > 300) {
+      btn.addClass('active');
+    }else{
+      btn.removeClass('active');
+    }
+  });
+
+  //スクロールしてトップへ戻る
+  btn.on('click',function () {
+    $('body,html').animate({
+      scrollTop: 0
+    });
+  });
+});
+  // ナビメニュー固定
+  window.addEventListener('scroll', fixHeader);
+    const header = document.querySelector('.header_inner');
+    let fixed = header.getBoundingClientRect().top + window.pageYOffset;
+      function fixHeader() {
+      if (window.pageYOffset > fixed) {
+        header.classList.add('fixed');
+      } else {
+        header.classList.remove('fixed');
+      }
+  }
     </script>
 </body>
 </html>

@@ -62,9 +62,7 @@
       <div class="profile_images">
         <div class="profile_image_myphoto">
           <img src="./img_pc/about_myphoto2.png" alt="自己紹介写真2">
-        </div>
-        <div class="loopSlide">
-          <img src="./img_pc/aboutme.png"><img src="./img_pc/aboutme.png">
+          <div class="loopSlide"></div>
         </div>
       </div>
       <div class="scroll_up">
@@ -79,6 +77,7 @@
           <div class="photo">
             <img class="image" src="./img_pc/about_cat1.png" alt="愛猫の写真1">
             <img class="image" src="./img_pc/about_cat2.png" alt="愛猫の写真2">
+            <img class="image" src="./img_pc/about_cat3.png" alt="愛猫の写真3">
           </div>
         </div>
       </div>
@@ -102,7 +101,7 @@
         </li>
         <li class="fadein">
           <div class="skill_inner"><img src="./img_pc/skill_coding.png" alt="codingアイコン"></div>
-          <p>HTML／CSS歴：4か月</p>
+          <p>HTML/CSS歴：4か月</p>
           <p>レスポンシブをはじめ、jQueryの記述も可能です。</p>
         </li>
       </ul>
@@ -114,33 +113,33 @@
         <p>強み</p>
       </div>
       <div class="strength_circle">
-        <div class="circle-1">
+        <div class="box circle-1 scroll-in">
           <p>学習意欲</p>
         </div>
-        <div class="circle-2">
+        <div class="box circle-2 scroll-in">
           <p>傾聴力</p>
         </div>
-        <div class="circle-3">
+        <div class="box circle-3 scroll-in">
           <p>目標達成力</p>
         </div>
       </div>
       <!-- sp版 -->
       <ul class="strength_circle_sp">
-        <li>学習意欲</li>
-        <li>傾聴力</li>
-        <li>目標達成力</li>
+        <li class="fadein_sp">学習意欲</li>
+        <li class="fadein_sp">傾聴力</li>
+        <li class="fadein_sp">目標達成力</li>
     </ul>
       <div class="strength_inner">
         <ul class="strength_text">
-          <li>
+          <li class="effect-fade">
           <h3>学習意欲</h3>
           <p>常に向上心をもって、創造性を高める努力ができます。広報業務では、デザイン未経験ながらも主体的に勉強し続けたことで、受賞作を政策できました。年々変化し続けるデザイン。幅広い表現を追究し挑戦するために、知識のアップデートを欠かしません。</p>
           </li>
-          <li>
+          <li class="effect-fade">
             <h3>傾聴力</h3>
             <p>相手の意図や要望を正しく把握できる傾聴力があります。広報作業務では、取材という限られた時間の中で相手と関係性を築き上げ、本音を引き出すことができました。この傾聴力を活かし、クライアントへのヒアリングにおいて、相手が真に求めるニーズをくみ取ります。</p>
           </li>
-          <li>
+          <li class="effect-fade">
             <h3>目標達成力</h3>
             <p>目標を達成するためのやり抜く力があります。現職では、組織で課題となっていた残業を減らすための業務の仕組化やSNSのフォロアー数の増加という目標に取り組みを行い、いずれも1年で達成しました。クライアントの課題解決という目標を傾聴力と学習意欲をかけ合わせて、達成します。</p>
           </li>
@@ -220,6 +219,97 @@ $(function(){
         });
     });
 });
+// pc版円を順番に表示
+//クラス名が「scroll-in」の要素を取得
+const objects = document.querySelectorAll('.scroll-in');
+//スクロール感知で実行
+const cb = function(entries, observer) {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) {
+            entry.target.classList.add('displayed');//スクロール感知で「displayed」のクラス名を付与
+            observer.unobserve(entry.target); //監視の終了
+        }
+    });
+}
+// オプション
+const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0
+}
+// IntersectionObserverインスタンス化
+const io = new IntersectionObserver(cb, options);
+// 監視を開始
+objects.forEach(object => {
+    io.observe(object);
+});
+
+// STRENGTHを順番に表示
+$(function () {
+  $(window).scroll(function () {
+    $(".effect-fade").each(function () {
+      var elemPos = $(this).offset().top; /* 要素の位置を取得 */
+      var scroll = $(window).scrollTop(); /* スクロール位置を取得 */
+      var windowHeight = $(window).height(); /* 画面幅を取得（画面の下側に入ったときに動作させるため） */
+      if (scroll > elemPos - windowHeight) {
+        /* 要素位置までスクロール出来たときに動作する */
+        $(this).addClass("effect-scroll");
+      }
+    });
+  });
+  jQuery(window).scroll();
+});
+// sp版circle順番に表示
+$(function(){
+    $(window).scroll(function (){
+        $('.fadein_sp').each(function(){
+            var position = $(this).offset().top;
+            var scroll = $(window).scrollTop();
+            var windowHeight = $(window).height();
+            if (scroll > position - windowHeight + 200){
+                $(function(){
+                    $('.fadein_sp').each(function(i){
+                        $(this).delay(i * 200).queue(function(){
+                            $(this).addClass('active');
+                        });
+                    });
+                });
+            }
+        });
+    });
+});
+// トップへボタン
+$(function() {
+  // 変数にクラスを入れる
+  var btn = $('.toTOP');
+  
+  //スクロールしてページトップから100に達したらボタンを表示
+  $(window).on('load scroll', function(){
+    if($(this).scrollTop() > 300) {
+      btn.addClass('active');
+    }else{
+      btn.removeClass('active');
+    }
+  });
+
+  //スクロールしてトップへ戻る
+  btn.on('click',function () {
+    $('body,html').animate({
+      scrollTop: 0
+    });
+  });
+});
+  // ナビメニュー固定
+  window.addEventListener('scroll', fixHeader);
+  const header = document.querySelector('.header_inner');
+  let fixed = header.getBoundingClientRect().top + window.pageYOffset;
+  function fixHeader() {
+    if (window.pageYOffset > fixed) {
+      header.classList.add('fixed');
+    } else {
+      header.classList.remove('fixed');
+    }
+  }
   </script>
 </body>
 </html>

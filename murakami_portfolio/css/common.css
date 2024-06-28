@@ -50,7 +50,11 @@ body :lang(en) {
   padding-right: 7.32%;
   padding-left: 7.32%;
   width: 100%;
-  z-index: 2;
+  z-index: 1000;
+    &.fixed {
+      position: fixed;
+      top: 0;
+      }
 }
 .header_nav ul{
   display: flex;
@@ -166,145 +170,151 @@ body :lang(en) {
 #footer .note{
   text-align: center;
   margin-top: 100px;
+  padding-bottom: 15px;
 }
 /* TOPへ戻るボタン */
 .toTOP{
   position: fixed;
-  bottom: 100px;
+  bottom: 50px;
   right: 5%;
+  opacity: 0;
+  visibility: hidden;
+}
+.active{
+  opacity: 1;
+  visibility: visible;
 }
 
+@media screen and (max-width:767px) {
 /* ハンバーガーメニュー */
-@media screen and (max-width:900px) {
-  .header_inner{
-    display: none;
-  }
-  .navarea, .nav_sp {
-    display: block;
-  }
+.header_inner{
+  display: none;
+}
+.navarea, .nav_sp {
+  display: block;
+}
 /*============
 nav
 =============*/
 .header_logo-sp{
-  display: block;
-  width: 30px;
-  height: auto;
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  position: fixed;
+display: block;
+width: 30px;
+height: auto;
+position: absolute;
+top: 30px;
+left: 30px;
+position: fixed;
+z-index: 3;
 }
 .nav_sp {
-  position: fixed;
-  top: 0;
-  left: -300px;
-  bottom: 0;
-  width: 300px;
-  background: #e3dbd5;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  transition: all .5s;
-  z-index: 3;
-  opacity: 0;
+position: fixed;
+top: 0;
+left: -300px;
+bottom: 0;
+width: 300px;
+background: #e3dbd5;
+overflow-x: hidden;
+overflow-y: auto;
+-webkit-overflow-scrolling: touch;
+transition: all .5s;
+z-index: 9999;
+opacity: 0;
 }
 .open .nav_sp {
-  left: 0;
-  opacity: 1;
+left: 0;
+opacity: 1;
 }
 .nav_sp .inner {
-  padding: 25px;
+padding: 25px;
 }
 .nav_sp .inner ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+list-style: none;
+margin: 0;
+padding: 0;
 }
 .nav_sp .inner ul li {
-  position: relative;
-  margin: 0;
-  border-bottom: 1px solid #45465a;
+position: relative;
+margin: 0;
+border-bottom: 1px solid #45465a;
 }
 .nav_sp .inner ul li a {
-  display: block;
-  color: #45465a;
-  font-size: 14px;
-  padding: 1em;
-  text-decoration: none;
-  transition-duration: 0.2s;
+display: block;
+color: #45465a;
+font-size: 14px;
+padding: 1em;
+text-decoration: none;
+transition-duration: 0.2s;
 }
 .nav_sp .inner ul li a:hover {
-  background: #e4e4e4;
+background: #e4e4e4;
 }
 /*============
 .toggle_btn
 =============*/
 .toggle_btn {
-  display: block;
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  width: 30px;
-  height: 30px;
-  transition: all .5s;
-  cursor: pointer;
-  z-index: 3;
+display: block;
+position: fixed;
+top: 30px;
+right: 30px;
+width: 30px;
+height: 30px;
+transition: all .5s;
+cursor: pointer;
+z-index: 3;
 }
 .toggle_btn span {
-  display: block;
-  position: absolute;
-  left: 0;
-  width: 30px;
-  height: 2px;
-  background-color: #ac8951;
-  border-radius: 4px;
-  transition: all .5s;
+display: block;
+position: absolute;
+left: 0;
+width: 30px;
+height: 2px;
+background-color: #ac8951;
+border-radius: 4px;
+transition: all .5s;
 }
 .toggle_btn span:nth-child(1) {
-  top: 4px;
+top: 4px;
 }
 .toggle_btn span:nth-child(2) {
-  top: 14px;
+top: 14px;
 }
 .toggle_btn span:nth-child(3) {
-  bottom: 4px;
+bottom: 4px;
 }
 .open .toggle_btn span {
-  background-color: #45465a;
+background-color: #45465a;
 }
 .open .toggle_btn span:nth-child(1) {
-  -webkit-transform: translateY(10px) rotate(-315deg);
-  transform: translateY(10px) rotate(-315deg);
+-webkit-transform: translateY(10px) rotate(-315deg);
+transform: translateY(10px) rotate(-315deg);
 }
 .open .toggle_btn span:nth-child(2) {
-  opacity: 0;
+opacity: 0;
 }
 .open .toggle_btn span:nth-child(3) {
-  -webkit-transform: translateY(-10px) rotate(315deg);
-  transform: translateY(-10px) rotate(315deg);
+-webkit-transform: translateY(-10px) rotate(315deg);
+transform: translateY(-10px) rotate(315deg);
 }
 /*============
 #mask
 =============*/
 #mask {
-  display: none;
-  transition: all .5s;
+display: none;
+transition: all .5s;
 }
 .open #mask {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #d4aeb9;
-  opacity: .7;
-  z-index: 2;
-  cursor: pointer;
-}
+display: block;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #d4aeb9;
+opacity: .7;
+z-index: 2;
+cursor: pointer;
 }
 
-@media screen and (max-width:767px) {
   .subtitle {
     margin-top: 150px;
     margin-bottom: 40px;

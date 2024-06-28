@@ -1,21 +1,21 @@
 @charset "utf-8";
 /* フォントの読み込み */
 /* 日本語 */
-body {
+/* body {
   font-family: "Noto Sans JP", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-}
+} */
 /* ↓欧文 */
-.main_visual h1,
+/* .main_visual h1,
 .subtitle h2,
 .header_nav ul li,
 .footer_innner ul li {
   font-family: linotype-didot-headline, serif;
   font-weight: 400;
   font-style: normal;
-}
+} */
 /* 全体背景色 */
 .wrapper {
   background-color: #e3dbd5;
@@ -38,6 +38,13 @@ body {
 }
 .works h3 {
   margin-top: 10px;
+}
+.fadein {
+  opacity : 0;
+  transition : all 2s;
+}
+.fadein.active{
+  opacity : 1;
 }
 @media screen and (max-width:767px) {
 .works {

@@ -7,52 +7,41 @@
   position: relative;
 }
 .profile_image_myphoto {
-  max-width: 60%;
   margin: 0 auto;
   padding-top: 125px;
   position: absolute;
   top: 50px;
-  left: -40px;
   position: relative;
   z-index: 2;
-}
-
-.loopSlide {
-  display: flex;
   overflow: hidden;
-
-  img {
-      width: auto;
-
-      &:first-child {
-          animation: slide1 60s -30s linear infinite;
-      }
-      &:last-child {
-          animation: slide2 60s linear infinite;
-      }
+}
+.profile_image_myphoto img{
+  display: block;
+  max-width: 60%;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
+/* about無限ループ */
+.loopSlide {
+  position: absolute;
+    top: 60%;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('../img_pc/aboutme.png');
+    background-repeat: repeat-x;
+    animation: scrollBackground 20s linear infinite;
+}
+@keyframes scrollBackground {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-50%);
   }
 }
-
-@keyframes slide1 {
-0% {
-  transform: translateX(100%);
-}
-to {
-  transform: translateX(-100%);
-}
-}
-
-@keyframes slide2 {
-0% {
-  transform: translateX(0);
-}
-to {
-  transform: translateX(-200%);
-}
-}
-
-
-
 .profile_container {
   margin: 0 auto;
   width: 42%;
@@ -77,7 +66,7 @@ to {
 	position: absolute;
 	width: 100%;
 	opacity: 0;
-	animation: change-img-anim 10s infinite;
+	animation: change-img-anim 15s infinite;
 }
 .image:nth-of-type(1) {
 	animation-delay: 0s;
@@ -85,9 +74,14 @@ to {
 .image:nth-of-type(2) {
 	animation-delay: 5s;
 }
+.image:nth-of-type(3) {
+	animation-delay: 10s;
+}
 @keyframes change-img-anim {
 	0%{ opacity: 0;}
+  25%{ opacity: 0;}
 	50%{ opacity: 1;}
+  75%{ opacity: 0;}
 	100%{ opacity: 0;}
 }
 .scroll_up {
@@ -176,6 +170,22 @@ to {
   transform:translate(-50%,-50%);
   color: #ac8951;
 }
+.box{
+  opacity: 0;
+}
+.circle-2.displayed{
+  animation-delay: 0.3s;
+}
+.circle-3.displayed{
+  animation-delay: 0.6s;
+}
+.displayed{
+  animation: fadeUp 1s forwards;
+}
+@keyframes fadeUp{
+  0%{opacity:0; transform: translateY(0);}
+100%{opacity:1; transform: translateY(-50px);}
+}
 .strength_inner {
   max-width: 73.206%;
   margin: 0 auto;
@@ -201,7 +211,16 @@ to {
   line-height: 2;
   width: 70%;
 }
-@media screen and (max-width:1100px){
+.effect-fade {
+  opacity: 0;
+  transform: translate(0, 100px); /* フェードインで動く高さを指定 */
+  transition: all 2000ms; /* フェードインにかかる時間を指定 */
+}
+.effect-scroll {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+@media screen and (max-width:1000px){
   .profile_container {
     width: 50%;
   }
@@ -292,7 +311,16 @@ to {
     bottom: 0px;
     right: 0px;
   }
+  .fadein_sp {
+    opacity : 0;
+    transition : all 1s;
+  }
+    
+  .fadein_sp.active{
+    opacity : 1;
+  }
 }
+
 @media screen and (max-width: 400px) {
   .strength_circle_sp {
     width: 15em;

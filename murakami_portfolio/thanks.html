@@ -102,6 +102,18 @@
       $nav.removeClass( open );
     });
   } )(jQuery);
+  
+  // ナビメニュー固定
+  window.addEventListener('scroll', fixHeader);
+  const header = document.querySelector('.header_inner');
+  let fixed = header.getBoundingClientRect().top + window.pageYOffset;
+  function fixHeader() {
+    if (window.pageYOffset > fixed) {
+      header.classList.add('fixed');
+    } else {
+      header.classList.remove('fixed');
+    }
+  }
   </script>
 </body>
 </html>

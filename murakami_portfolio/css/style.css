@@ -9,7 +9,7 @@
   right: 5%;
   width: 100%;
   max-width: 12.811%;
-  animation:15s linear infinite rotation1;
+  animation: 20s linear infinite rotation1;
 }
 @keyframes rotation1{
   0%{ transform:rotate(0);}
@@ -22,6 +22,7 @@
   font-size: 16px;
   line-height: 70px;
   margin-top: 50px;
+  margin-bottom: 90px;
 }
 .scrolldown1::after {
   content: "";
@@ -53,9 +54,12 @@
   }
 }
 /* ナビゲーションメニュー */
-.header_inner{
-  margin-top: 150px;
-}
+/* .header_inner{
+  &.fixed {
+    position: fixed;
+    top: 0;
+    }
+} */
 /* about */
 #about {
   max-width: 1000px;
@@ -75,14 +79,35 @@
   line-height: 2.5;
   font-size: 16px;
 }
-.scroll_up {
-  transition: 0.8s ease-in-out;
-  transform: translateY(30px);
+.effect-fade {
   opacity: 0;
+  transform: translate(0, 100px); /* フェードインで動く高さを指定 */
+  transition: all 2000ms; /* フェードインにかかる時間を指定 */
 }
-.scroll_up.on {
-  transform: translateY(0);
-  opacity: 1.0;
+.effect-scroll {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.about_image_cat:hover {
+  cursor: url(../img_pc/caticon.png),auto;
+}
+.about_image_cat {
+  margin: 100px auto 0 auto;
+  width: 20%;
+  animation:katakata 6s infinite ease-in-out alternate;
+}
+/* カタカタ揺らす */
+@keyframes katakata {
+  0% {transform:translate(0, 0) rotate(0deg);}
+  21% {transform:translate(0, 0) rotate(0deg);}
+  22% {transform:translate(0, 0) rotate(-3deg);}
+  23% {transform:translate(0, -1px) rotate(0deg);}
+  24% {transform:translate(0, -1px) rotate(3deg);}
+  25% {transform:translate(1px, 0) rotate(-2deg);}
+  26% {transform:translate(0, 1px) rotate(0deg);}
+  27% {transform:translate(0, 0) rotate(3deg);}
+  28% {transform:translate(0, 0) rotate(0deg);}
+  100% {transform:translate(0, 0) rotate(0deg);}
 }
 /* works */
 #works {
@@ -93,6 +118,7 @@
   display: flex;
   justify-content: space-between;
   gap: 70px;
+  margin: 0 10px;
 }
 #works ul li p {
   margin-top: 25px;
@@ -103,9 +129,8 @@
 }
 .fadein {
   opacity : 0;
-  transition : all 2s;
+  transition : all 3s;
 }
-  
 .fadein.active{
   opacity : 1;
 }
@@ -165,8 +190,7 @@ textarea.c-form__input {
 }
 /* TOPへ戻るボタン
 .toTOP{
-  position: fixed;
-  bottom: 100px;
+  bottom: 50px;
   right: 5%;
 } */
 /* ヘッダー＆メインビジュアル */

@@ -146,6 +146,38 @@
       $nav.removeClass( open );
     });
   } )(jQuery);
+  // トップへボタン
+$(function() {
+  // 変数にクラスを入れる
+  var btn = $('.toTOP');
+  
+  //スクロールしてページトップから100に達したらボタンを表示
+  $(window).on('load scroll', function(){
+    if($(this).scrollTop() > 300) {
+      btn.addClass('active');
+    }else{
+      btn.removeClass('active');
+    }
+  });
+
+  //スクロールしてトップへ戻る
+  btn.on('click',function () {
+    $('body,html').animate({
+      scrollTop: 0
+    });
+  });
+});
+  // ナビメニュー固定
+  window.addEventListener('scroll', fixHeader);
+  const header = document.querySelector('.header_inner');
+  let fixed = header.getBoundingClientRect().top + window.pageYOffset;
+  function fixHeader() {
+    if (window.pageYOffset > fixed) {
+      header.classList.add('fixed');
+    } else {
+      header.classList.remove('fixed');
+    }
+  }
   </script>
 </body>
 </html>
