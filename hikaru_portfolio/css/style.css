@@ -54,6 +54,13 @@
     transform-origin: 0 100%;
   }
 }
+/* ヘッダー */
+.header_inner{
+  &.fixed {
+    position: fixed;
+    top: 0;
+    }
+  }
 
 /* about */
 #about {
