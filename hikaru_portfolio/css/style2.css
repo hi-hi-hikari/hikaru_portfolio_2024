@@ -322,6 +322,9 @@
 }
 
 @media screen and (max-width: 400px) {
+  .profile_image_myphoto img {
+    max-width: 80%;
+  }
   .strength_circle_sp {
     width: 15em;
     height: 14em;
