@@ -212,7 +212,7 @@ overflow-x: hidden;
 overflow-y: auto;
 -webkit-overflow-scrolling: touch;
 transition: all .5s;
-z-index: 9999;
+z-index: 9998;
 opacity: 0;
 }
 .open .nav_sp {
@@ -250,12 +250,12 @@ background: #e4e4e4;
 display: block;
 position: fixed;
 top: 30px;
-right: 10px;
+right: 30px;
 width: 30px;
 height: 30px;
 transition: all .5s;
 cursor: pointer;
-z-index: 3;
+z-index: 9999;
 }
 .toggle_btn span {
 display: block;
@@ -336,5 +336,10 @@ cursor: pointer;
   .toTOP {
     width: 50px;
     right: 5%;
+  }
+}
+@media screen and (max-width:390px) {
+  .toggle_btn{
+    right: 20px;
   }
 }
