@@ -199,7 +199,7 @@ textarea.c-form__input {
 @media screen and (max-width:767px) {
 
   .main{
-    padding-top: 200px;
+    padding-top: 180px;
   }
   .main_visual_circle {
     width: auto;
@@ -208,7 +208,7 @@ textarea.c-form__input {
     bottom: auto;
   }
   .scrolldown1 {
-    margin-top: 300px;
+    margin-top: 250px;
   }
 /* about */
   .about {
