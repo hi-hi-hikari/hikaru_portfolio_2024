@@ -254,15 +254,17 @@
         $nav.removeClass( open );
       });
     } )(jQuery);
-    
+
+// ローディング画面
     $(window).on('load',function(){
-$("#splash-logo").delay(1200).fadeOut('slow');
-$("#splash").delay(1500).fadeOut('slow',function(){
-$('body').addClass('appear');
-});
-$('.splashbg1').on('animationend', function() { 
-});
-});
+      $("#splash-logo").delay(1200).fadeOut('slow');
+      $("#splash").delay(1500).fadeOut('slow',function(){
+      $('body').addClass('appear');
+    });
+      $('.splashbg1').on('animationend', function() { 
+    });
+  });
+
 // aboutを順番に表示
 $(function () {
   $(window).scroll(function () {
