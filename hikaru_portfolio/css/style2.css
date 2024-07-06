@@ -17,7 +17,7 @@
 }
 .profile_image_myphoto img{
   display: block;
-  max-width: 60%;
+  max-width: 80%;
   margin: 0 auto;
   height: 100%;
   width: auto;
@@ -93,6 +93,9 @@
   transform: translateY(0);
   opacity: 1.0;
 }
+.profile_container span {
+  display: inline-block;
+} 
 /* SKILL */
 #skill_block ul {
   display: flex;
@@ -237,7 +240,7 @@
 }
 @media screen and (max-width:767px) {
   .profile_container {
-    width: 82.666%;
+    width: 80%;
   }
   .profile_container h1 {
     margin: 100px auto 40px;

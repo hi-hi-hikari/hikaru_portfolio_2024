@@ -11,7 +11,9 @@ small,
 .strength_circle_sp li,
 .works_title p,
 .works_title h1,
-.works_inner h2 {
+.works_inner h2,
+.profile_container p span,
+.about span {
   font-family: "Noto Sans JP", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
